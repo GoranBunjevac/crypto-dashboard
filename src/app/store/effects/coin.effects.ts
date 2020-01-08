@@ -14,10 +14,11 @@ export class CoinEffects {
   @Effect()
   public loadCoins$ = this.actions$
     .pipe(ofType<CoinLoadAction>(CoinActionType.Loading),
-      map(action => action),
-      switchMap(() =>
-        this.service.getCoinData().pipe(
-          map((response: CoinResponse) => new CoinLoadSuccessAction(response)),
+      switchMap(action =>
+        this.service
+        .getCoinData()
+        .pipe(
+          map(response => new CoinLoadSuccessAction(response)),
           catchError((error) => of(new CoinLoadFailAction(error)))
         )
       )

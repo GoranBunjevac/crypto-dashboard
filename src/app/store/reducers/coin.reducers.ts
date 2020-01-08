@@ -7,11 +7,11 @@ export function coinReducer(state = initialCoinState, action: CoinAction): CoinS
       return { ...state, loading: true };
     }
     case CoinActionType.LoadSuccess: {
-      return coinAdapter.addAll(action.payload.coins, {
+      return coinAdapter.addAll(action.payload, {
         ...state,
         error: false,
         loading: false,
-        total: action.payload.total
+        total: 100
       });
     }
     case CoinActionType.LoadFailure: {

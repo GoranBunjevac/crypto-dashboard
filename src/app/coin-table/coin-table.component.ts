@@ -27,10 +27,10 @@ export class CoinTableComponent implements OnInit, OnDestroy, AfterViewInit {
   public noData: Coin[] = [];
   public loading: boolean;
   public error$: Observable<boolean>;
-  //public filterSubject = new Subject<string>();
+  public filterSubject = new Subject<string>();
   public defaultSort: Sort = { active: 'id', direction: 'asc' };
 
-  //private filter: string = "";
+  private filter: string = "";
   private subscription: Subscription = new Subscription();
 
   constructor(public store: Store<GlobalState>) { }
@@ -49,14 +49,14 @@ export class CoinTableComponent implements OnInit, OnDestroy, AfterViewInit {
 
   public ngAfterViewInit(): void {
     this.loadCoins();
-    // let filter$ = this.filterSubject.pipe(
-    //   debounceTime(150),
-    //   distinctUntilChanged(),
-    //   tap((value: string) => {
-    //     this.paginator.pageIndex = 0;
-    //     this.filter = value;
-    //   })
-    // );
+    let filter$ = this.filterSubject.pipe(
+      debounceTime(150),
+      distinctUntilChanged(),
+      tap((value: string) => {
+        this.paginator.pageIndex = 0;
+        this.filter = value;
+      })
+    );
 
     let sort$ = this.sort.sortChange.pipe(tap(() => this.paginator.pageIndex = 0));
 

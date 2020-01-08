@@ -14,6 +14,7 @@ import { MaterialModule } from './shared/material.module';
 import { CoinTableComponent } from './coin-table/coin-table.component';
 import { CoinDetailsComponent } from './coin-details/coin-details.component';
 import { CoinStoreModule } from './store/coin-store.module';
+import { CoinEffects } from './store/effects/coin.effects';
 
 @NgModule({
   declarations: [
@@ -28,8 +29,7 @@ import { CoinStoreModule } from './store/coin-store.module';
     HttpClientModule,
     BrowserAnimationsModule,
     MaterialModule,
-    CoinStoreModule,
-    EffectsModule.forRoot([AppEffects])
+    CoinStoreModule
   ],
   providers: [CoinService],
   bootstrap: [AppComponent]

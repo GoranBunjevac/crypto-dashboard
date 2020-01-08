@@ -8,7 +8,9 @@ export interface CoinState extends EntityState<Coin> {
 }
 
 export const coinAdapter: EntityAdapter<Coin> = createEntityAdapter<Coin>({
-  selectId: (coin: Coin) => coin.id
+  selectId: (coin: Coin) => coin.id,
+  sortComparer: (a: Coin, b: Coin): number =>
+        a.name.toString().localeCompare(b.name.toString())
 });
 
 export const initialCoinState: CoinState = coinAdapter.getInitialState({

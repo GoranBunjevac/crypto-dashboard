@@ -1,5 +1,6 @@
 import { Action } from '@ngrx/store';
 import { CoinResponse } from 'src/app/models/coin-response';
+import { Coin } from 'src/app/models/coin';
 
 export enum CoinActionType {
   Loading = '[Coin] Loading',
@@ -9,12 +10,11 @@ export enum CoinActionType {
 
 export class CoinLoadAction implements Action {
   public readonly type = CoinActionType.Loading;
-  constructor() {}
 }
 
 export class CoinLoadSuccessAction implements Action {
   public readonly type = CoinActionType.LoadSuccess;
-  constructor(public payload: CoinResponse) {}
+  constructor(public payload: Coin[]) {}
 }
 
 export class CoinLoadFailAction implements Action {
