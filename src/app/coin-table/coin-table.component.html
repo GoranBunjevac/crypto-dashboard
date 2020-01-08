@@ -1,0 +1,67 @@
+<div class="coin-content">
+  <div class="table-header">
+      <div class="dc-h3 header">
+        Coins
+      </div>
+      <!-- <div class="search-bar">
+        <input class="dc-search" placeholder="Search Customer" (keyup)="filterSubject.next($event.target.value)">
+      </div> -->
+    </div>
+<div class="table-container">
+  <table mat-table [dataSource]="dataSource" matSort matSortDisableClear="true"
+    [matSortActive]="defaultSort.active" [matSortDirection]="defaultSort.direction">
+
+    <ng-container matColumnDef="id">
+      <th mat-header-cell class="dc-label" *matHeaderCellDef mat-sort-header>Id</th>
+      <td mat-cell class="dc-content" *matCellDef="let element">{{element.id}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="rank">
+      <th mat-header-cell class="dc-label" *matHeaderCellDef mat-sort-header>Rank</th>
+      <td mat-cell class="dc-content" *matCellDef="let element">{{element.rank}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="symbol">
+      <th mat-header-cell class="dc-label" *matHeaderCellDef mat-sort-header>Symbol</th>
+      <td mat-cell class="dc-content" *matCellDef="let element"> {{ element.symbol }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="price">
+      <th mat-header-cell class="dc-label" *matHeaderCellDef mat-sort-header>Price</th>
+      <td mat-cell class="dc-content" *matCellDef="let element">{{element.priceUsd}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="24hourChange">
+        <th mat-header-cell class="dc-label" *matHeaderCellDef mat-sort-header>24h change</th>
+        <td mat-cell class="dc-content" *matCellDef="let element">"Fix this"</td>
+      </ng-container>
+
+    <ng-container matColumnDef="noData">
+      <td mat-cell class="dc-label no-data-cell" *matCellDef="let element"
+        [attr.colspan]="displayedColumns.length">
+        <ng-container *ngIf="!(error$ | async) && !loading">
+          <span class="dc-content">No Coins</span>
+        </ng-container>
+        <ng-container *ngIf="(error$ | async) && !loading">
+          <span class="dc-label">System Failure</span>
+          <span class="dc-content">Error</span>
+          <span class="retry" (click)="retry()">Retry</span>
+        </ng-container>
+        <ng-container *ngIf="loading">
+            <span class="dc-label">Retrieving data...</span>
+          </ng-container>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns, sticky: true"></tr>
+    <ng-container *ngIf="coinTotal && !loading">
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="customer-row"></tr>
+    </ng-container>
+    <ng-container *ngIf="!coinTotal || loading">
+      <tr mat-row *matRowDef="let row; columns: ['noData'];"class="no-data-row" ></tr>
+    </ng-container>
+  </table>
+
+  <mat-paginator [length]="customerTotal" [pageSize]="3"  [pageSizeOptions]="[3, 5, 10]"></mat-paginator>
+</div>
+</div>
