@@ -47,13 +47,13 @@
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns, sticky: true"></tr>
     <ng-container *ngIf="coinTotal && !loading">
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="customer-row"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="customer-row" [routerLink]="['/coin-details/' + row.id]"></tr>
     </ng-container>
     <ng-container *ngIf="!coinTotal || loading">
       <tr mat-row *matRowDef="let row; columns: ['noData'];"class="no-data-row" ></tr>
     </ng-container>
   </table>
 
-  <mat-paginator [length]="customerTotal" [pageSize]="3"  [pageSizeOptions]="[3, 5, 10]"></mat-paginator>
+  <mat-paginator [length]="coinTotal" [pageSize]="3"  [pageSizeOptions]="[3, 5, 10]"></mat-paginator>
 </div>
 </div>

@@ -1,14 +1,15 @@
 import { Component, OnInit, ViewChild, ElementRef, OnDestroy, AfterViewInit } from '@angular/core';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { GlobalState } from '../store/states/global.state';
+import { GlobalState } from '../store/global.state';
 import { Store, select } from '@ngrx/store';
-import { selectAllCoin, selectCoinTotal, selectCoinError, selectCoinLoading } from '../store/selectors/coin.selectors';
-import { CoinLoadAction } from '../store/actions/coin.actions';
+import { selectAllCoin, selectCoinTotal, selectCoinError, selectCoinLoading } from '../store/coin-store/coin.selectors';
+import { CoinLoadAction } from '../store/coin-store/coin.actions';
 import { MatPaginator } from '@angular/material/paginator';
 import { Observable, merge, Subject, Subscription } from 'rxjs';
 import { tap, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { Coin } from '../models/coin';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-coin-table',
@@ -33,7 +34,8 @@ export class CoinTableComponent implements OnInit, OnDestroy, AfterViewInit {
   private filter: string = "";
   private subscription: Subscription = new Subscription();
 
-  constructor(public store: Store<GlobalState>) { }
+  constructor(public store: Store<GlobalState>,
+              private router: Router) { }
 
   public ngOnInit(): void {
     this.store.pipe(select(selectAllCoin)).subscribe(coins => this.initializeData(coins));

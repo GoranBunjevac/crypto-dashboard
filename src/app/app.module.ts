@@ -8,20 +8,19 @@ import { CoinService } from './services/coin.service';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './header/header.component';
-import { EffectsModule } from '@ngrx/effects';
-import { AppEffects } from './app.effects';
 import { MaterialModule } from './shared/material.module';
 import { CoinTableComponent } from './coin-table/coin-table.component';
 import { CoinDetailsComponent } from './coin-details/coin-details.component';
-import { CoinStoreModule } from './store/coin-store.module';
-import { CoinEffects } from './store/effects/coin.effects';
+import { GlobalStoreModule } from './store/global-store.module';
+import { SettingsComponent } from './settings/settings.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     CoinTableComponent,
-    CoinDetailsComponent
+    CoinDetailsComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +28,7 @@ import { CoinEffects } from './store/effects/coin.effects';
     HttpClientModule,
     BrowserAnimationsModule,
     MaterialModule,
-    CoinStoreModule
+    GlobalStoreModule
   ],
   providers: [CoinService],
   bootstrap: [AppComponent]

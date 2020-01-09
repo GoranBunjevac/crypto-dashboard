@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { switchMap, map, catchError } from 'rxjs/operators';
-import { CoinActionType, CoinLoadAction, CoinLoadSuccessAction, CoinLoadFailAction } from '../actions/coin.actions';
+import { CoinActionType, CoinLoadAction, CoinLoadSuccessAction, CoinLoadFailAction } from './coin.actions';
 import { CoinService } from '../../services/coin.service';
 import { CoinResponse } from 'src/app/models/coin-response';
 
@@ -13,7 +13,7 @@ export class CoinEffects {
 
   @Effect()
   public loadCoins$ = this.actions$
-    .pipe(ofType<CoinLoadAction>(CoinActionType.Loading),
+    .pipe(ofType<CoinLoadAction>(CoinActionType.LOAD_REQUEST),
       switchMap(action =>
         this.service
         .getCoinData()

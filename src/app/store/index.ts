@@ -1,7 +1,6 @@
-import { ActionReducerMap } from '@ngrx/store';
-import { GlobalState } from './states/global.state';
-import { coinReducer } from './reducers/coin.reducers';
+import { GlobalStoreModule } from './global-store.module';
+import * as GlobalStoreSelectors from './selectors';
+import * as GlobalStoreState from './global.state';
 
-export const reducers: ActionReducerMap<GlobalState> = {
-  coin: coinReducer
-};
+export * from './router-store';
+export * from './coin-store';

@@ -8,12 +8,12 @@
         <span class="button-overlay-pop">
           <button
             mat-icon-button
-            (click)="openSettingsScreen()"
+            [routerLink]="['/settings']"
             isRoundButton="true"
             id="settingsButton"
             disableRipple="true"
           >
-            <mat-icon>settings</mat-icon>
+            <mat-icon>settings_applications</mat-icon>
           </button>
         </span>
         <h1 style="padding-left: 10px;">Cryptocurrencies</h1>

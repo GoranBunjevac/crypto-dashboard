@@ -1,5 +1,7 @@
 import { createSelector, createFeatureSelector } from '@ngrx/store';
-import { CoinState, coinAdapter } from '../states/coin.state';
+import { CoinState, coinAdapter } from './coin.state';
+import * as fromRouterState from '../router-store/router.selectors';
+import { Coin } from 'src/app/models/coin';
 
 export const {
   selectIds: _selectCoinDataIds,
@@ -39,4 +41,14 @@ export const selectCoinLoading = createSelector(
 export const selectCoinTotal = createSelector(
   selectCoinState,
   (state: CoinState): number => state.total
+);
+
+export const getSelectedCoin  = createSelector(
+  selectCoinState,
+  fromRouterState.getRouterStoreState,
+  (coins, routerState): Coin => {
+    if (routerState && routerState.state.params.id && coins.entities[routerState.state.params.id]) {
+      return coins.entities[routerState.state.params.id];
+    }
+  }
 );

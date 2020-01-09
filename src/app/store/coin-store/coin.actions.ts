@@ -3,22 +3,22 @@ import { CoinResponse } from 'src/app/models/coin-response';
 import { Coin } from 'src/app/models/coin';
 
 export enum CoinActionType {
-  Loading = '[Coin] Loading',
-  LoadSuccess = '[Coin] Load Success',
-  LoadFailure = '[Coin] Load Failure'
+  LOAD_REQUEST = '[Coin] Loading',
+  LOAD_SUCCESS = '[Coin] Load Success',
+  LOAD_FAILURE = '[Coin] Load Failure'
 }
 
 export class CoinLoadAction implements Action {
-  public readonly type = CoinActionType.Loading;
+  public readonly type = CoinActionType.LOAD_REQUEST;
 }
 
 export class CoinLoadSuccessAction implements Action {
-  public readonly type = CoinActionType.LoadSuccess;
+  public readonly type = CoinActionType.LOAD_SUCCESS;
   constructor(public payload: Coin[]) {}
 }
 
 export class CoinLoadFailAction implements Action {
-  public readonly type = CoinActionType.LoadFailure;
+  public readonly type = CoinActionType.LOAD_FAILURE;
   constructor(public error: any) {}
 }
 
