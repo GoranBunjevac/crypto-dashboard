@@ -1,6 +1,8 @@
-<h1 style="padding-top: 80px; padding-left: 40px">Coin details</h1>
+<h2 style="padding-top: 80px; padding-left: 40px">Coin details</h2>
+<hr class="detailsLine" style="margin-left: 3%">
 <div *ngIf="(coin$ | async) != null" style="padding-left: 40px">
-  <h2>{{(coin$ | async).name}}</h2>
+  <h3>{{(coin$ | async).name}}</h3>
+    <hr class="detailsLine">
   <table>
     <tr>
       <td width="20%"><strong>Name</strong></td>
