@@ -1,5 +1,5 @@
-import { Platform } from '@angular/cdk/platform';
-import { Quote } from '@angular/compiler';
+import { Platform } from './platform';
+import { Quote } from './quote';
 
 export class Coin {
   id: number;

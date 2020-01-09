@@ -1,12 +1,14 @@
 export class CoinDetails {
-  priceBtc: string;
-  volumeUsd24h: string;
-  marketCapUsd: string;
-  availableSupply: string;
+  coinId: number;
+  name: string;
+  rank: string;
+  symbol: string;
+  price: number;
+  volume24H: number;
+  marketCap: number;
   totalSupply: string;
-  maxSupply: string;
-  percentChange1h: string;
-  percentChange24h: string;
-  percentChange7d: string;
-  lastUpdated: string;
+  availableSupply: string;
+  percentChange1h: number;
+  percentChange24h: number;
+  percentChange7d: number;
 }

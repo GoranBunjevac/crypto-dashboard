@@ -1,58 +1,54 @@
 <h1 style="padding-top: 80px; padding-left: 40px">Coin details</h1>
-<div *ngIf="(coin$ | async) != null" style="padding-left: 40px">
+<div *ngIf="(coin$ | async) as coin" style="padding-left: 40px">
   <h2>{{(coin$ | async).name}}</h2>
   <table>
     <tr>
       <td width="20%"><strong>Name</strong></td>
-      <td width="50%">{{(coin$ | async).name}}</td>
+      <td width="50%">{{coin.name}}</td>
     </tr>
     <tr>
       <td><strong>Symbol</strong></td>
-      <td>{{(coin$ | async).symbol}}</td>
+      <td>{{coin.symbol}}</td>
     </tr>
     <tr>
       <td><strong>Rank</strong></td>
-      <td>{{(coin$ | async).cmcRank}}</td>
-    </tr>
-    <!-- <tr>
-      <td><strong>Price in USD</strong></td>
-      <td>{{(coin$ | async).quote}}</td>
+      <td>{{coin.cmcRank}}</td>
     </tr>
     <tr>
-      <td><strong>Price bitcoin</strong></td>
-      <td>{{(coin$ | async).price_btc}}</td>
+      <td><strong>Price in selected fiat currency</strong></td>
+      <td>{{coin.quote.fiatCurrency.price}}</td>
     </tr>
     <tr>
       <td><strong>24 hour volume USD</strong></td>
-      <td>{{(coin$ | async).volume_usd_24h}}</td>
+      <td>{{coin.quote.fiatCurrency.volume24H}}</td>
     </tr>
     <tr>
       <td><strong>Market cap USD</strong></td>
-      <td>{{(coin$ | async).market_cap_usd}}</td>
-    </tr> -->
+      <td>{{coin.quote.fiatCurrency.marketCap}}</td>
+    </tr>
     <tr>
       <td><strong>Available supply</strong></td>
-      <td>{{(coin$ | async).circulatingSupply}}</td>
+      <td>{{coin.circulatingSupply}}</td>
     </tr>
     <tr>
       <td><strong>Total supply</strong></td>
-      <td>{{(coin$ | async).totalSupply}}</td>
+      <td>{{coin.totalSupply}}</td>
     </tr>
     <tr>
       <td><strong>Max supply</strong></td>
-      <td>{{(coin$ | async).maxSupply}}</td>
+      <td>{{coin.maxSupply}}</td>
     </tr>
-    <!-- <tr>
+    <tr>
       <td><strong>Percentage change per hour</strong></td>
-      <td>{{(coin$ | async).percent_change_1h}}</td>
+      <td>{{coin.quote.fiatCurrency.percentChange1H}}</td>
     </tr>
     <tr>
       <td><strong>Percentage change per day</strong></td>
-      <td>{{(coin$ | async).percent_change_24h}}</td>
+      <td>{{coin.quote.fiatCurrency.percentChange24H}}</td>
     </tr>
     <tr>
       <td><strong>Percentage change per week</strong></td>
-      <td>{{(coin$ | async).percent_change_7d}}</td>
-    </tr> -->
+      <td>{{coin.quote.fiatCurrency.percentChange7D}}</td>
+    </tr>
   </table>
 </div>
