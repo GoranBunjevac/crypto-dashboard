@@ -1,12 +1,14 @@
-a {
-  font-size: 16px;
-}
-
-.button-overlay-pop:hover {
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.2) !important;
-}
-
 .mat-toolbar.mat-primary {
   background: #6fa3a3;
+}
+
+#settingsButton,
+#settingsButton:focus {
+  background-color: #6fa3a3;
+  border: #6fa3a3;
+  padding-top: 3px;
+}
+
+.mat-icon{
+  color: white;
 }
