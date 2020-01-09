@@ -63,7 +63,9 @@ export class CoinTableComponent implements OnInit, OnDestroy, AfterViewInit {
     let sort$ = this.sort.sortChange.pipe(tap(() => this.paginator.pageIndex = 0));
 
     this.subscription.add(merge(sort$, this.paginator.page).pipe(
-      tap(() => this.loadCoins())
+      tap(() => {
+        this.loadCoins();
+      })
     ).subscribe());
   }
 
@@ -73,6 +75,9 @@ export class CoinTableComponent implements OnInit, OnDestroy, AfterViewInit {
 
   private initializeData(coins: Coin[]): void {
     this.dataSource = new MatTableDataSource(coins.length ? coins : this.noData);
+    if (coins.length) {
+      this.dataSource.paginator = this.paginator;
+    }
   }
 
   public ngOnDestroy(): void {
