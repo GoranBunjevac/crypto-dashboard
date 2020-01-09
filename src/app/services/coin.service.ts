@@ -4,7 +4,7 @@ import { map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 
 
-const API_URL = 'https://api.coinmarketcap.com/v1/ticker/?limit=100';
+const API_URL = 'https://localhost:44319/coins';
 
 @Injectable({
   providedIn: 'root'

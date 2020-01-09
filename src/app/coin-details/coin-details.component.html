@@ -12,11 +12,11 @@
     </tr>
     <tr>
       <td><strong>Rank</strong></td>
-      <td>{{(coin$ | async).rank}}</td>
+      <td>{{(coin$ | async).cmcRank}}</td>
     </tr>
-    <tr>
+    <!-- <tr>
       <td><strong>Price in USD</strong></td>
-      <td>{{(coin$ | async).price_usd}}</td>
+      <td>{{(coin$ | async).quote}}</td>
     </tr>
     <tr>
       <td><strong>Price bitcoin</strong></td>
@@ -29,20 +29,20 @@
     <tr>
       <td><strong>Market cap USD</strong></td>
       <td>{{(coin$ | async).market_cap_usd}}</td>
-    </tr>
+    </tr> -->
     <tr>
       <td><strong>Available supply</strong></td>
-      <td>{{(coin$ | async).available_supply}}</td>
+      <td>{{(coin$ | async).circulatingSupply}}</td>
     </tr>
     <tr>
       <td><strong>Total supply</strong></td>
-      <td>{{(coin$ | async).total_supply}}</td>
+      <td>{{(coin$ | async).totalSupply}}</td>
     </tr>
     <tr>
       <td><strong>Max supply</strong></td>
-      <td>{{(coin$ | async).max_supply}}</td>
+      <td>{{(coin$ | async).maxSupply}}</td>
     </tr>
-    <tr>
+    <!-- <tr>
       <td><strong>Percentage change per hour</strong></td>
       <td>{{(coin$ | async).percent_change_1h}}</td>
     </tr>
@@ -53,6 +53,6 @@
     <tr>
       <td><strong>Percentage change per week</strong></td>
       <td>{{(coin$ | async).percent_change_7d}}</td>
-    </tr>
+    </tr> -->
   </table>
 </div>

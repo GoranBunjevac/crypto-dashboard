@@ -1,5 +1,4 @@
 import { Action } from '@ngrx/store';
-import { CoinResponse } from 'src/app/models/coin-response';
 import { Coin } from 'src/app/models/coin';
 
 export enum CoinActionType {

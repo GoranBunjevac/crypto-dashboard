@@ -1,19 +1,19 @@
-import { CoinDetails } from './coin-details';
+import { Platform } from '@angular/cdk/platform';
+import { Quote } from '@angular/compiler';
 
 export class Coin {
-  id: string;
+  id: number;
   name: string;
   symbol: string;
-  rank: string;
-  price_usd: string;
-  price_btc: string;
-  volume_usd_24h: string;
-  market_cap_usd: string;
-  available_supply: string;
-  total_supply: string;
-  max_supply: string;
-  percent_change_1h: string;
-  percent_change_24h: string;
-  percent_change_7d: string;
-  last_updated: string;
+  slug: string;
+  numMarketPairs: string;
+  dateAdded: string;
+  tags: string[];
+  maxSupply: string;
+  circulatingSupply: string;
+  totalSupply: string;
+  cmcRank: string;
+  platform: Platform;
+  quote: Quote;
+  lastUpdated: string;
 }

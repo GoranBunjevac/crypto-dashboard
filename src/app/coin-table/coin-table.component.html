@@ -3,14 +3,14 @@
   <table mat-table [dataSource]="dataSource" matSort matSortDisableClear="true"
     [matSortActive]="defaultSort.active" [matSortDirection]="defaultSort.direction">
 
-    <ng-container matColumnDef="id">
-      <th mat-header-cell class="dc-label" *matHeaderCellDef mat-sort-header>Id</th>
-      <td mat-cell class="dc-content" *matCellDef="let element">{{element.id}} </td>
+    <ng-container matColumnDef="name">
+      <th mat-header-cell class="dc-label" *matHeaderCellDef mat-sort-header>Name</th>
+      <td mat-cell class="dc-content" *matCellDef="let element">{{element.name}} </td>
     </ng-container>
 
     <ng-container matColumnDef="rank">
       <th mat-header-cell class="dc-label" *matHeaderCellDef mat-sort-header>Rank</th>
-      <td mat-cell class="dc-content" *matCellDef="let element">{{element.rank}} </td>
+      <td mat-cell class="dc-content" *matCellDef="let element">{{element.cmcRank}} </td>
     </ng-container>
 
     <ng-container matColumnDef="symbol">
@@ -19,13 +19,13 @@
     </ng-container>
 
     <ng-container matColumnDef="price">
-      <th mat-header-cell class="dc-label" *matHeaderCellDef mat-sort-header>Price</th>
-      <td mat-cell class="dc-content" *matCellDef="let element">{{element.price_usd}} </td>
+      <th mat-header-cell class="dc-label" *matHeaderCellDef mat-sort-header>Price in the selected fiat currency</th>
+      <td mat-cell class="dc-content" *matCellDef="let element">{{element.quote.fiatCurrency.price}} </td>
     </ng-container>
 
     <ng-container matColumnDef="24hourChange">
-        <th mat-header-cell class="dc-label" *matHeaderCellDef mat-sort-header>24h change</th>
-        <td mat-cell class="dc-content" *matCellDef="let element">"Fix this"</td>
+        <th mat-header-cell class="dc-label" *matHeaderCellDef mat-sort-header>24 hour change</th>
+        <td mat-cell class="dc-content" *matCellDef="let element">{{element.quote.fiatCurrency.percentChange24H}}</td>
       </ng-container>
 
     <ng-container matColumnDef="noData">

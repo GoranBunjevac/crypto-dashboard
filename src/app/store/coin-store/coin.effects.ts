@@ -5,7 +5,6 @@ import { of } from 'rxjs';
 import { switchMap, map, catchError } from 'rxjs/operators';
 import { CoinActionType, CoinLoadAction, CoinLoadSuccessAction, CoinLoadFailAction } from './coin.actions';
 import { CoinService } from '../../services/coin.service';
-import { CoinResponse } from 'src/app/models/coin-response';
 
 @Injectable()
 export class CoinEffects {

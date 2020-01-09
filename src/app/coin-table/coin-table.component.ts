@@ -22,14 +22,14 @@ export class CoinTableComponent implements OnInit, OnDestroy, AfterViewInit {
   @ViewChild(MatSort, { static: false }) sort: MatSort;
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
 
-  public displayedColumns: string[] = ['id', 'rank', 'symbol', 'price', '24hourChange'];
+  public displayedColumns: string[] = ['name', 'rank', 'symbol', 'price', '24hourChange'];
   public dataSource: MatTableDataSource<Coin>;
   public coinTotal: number;
   public noData: Coin[] = [];
   public loading: boolean;
   public error$: Observable<boolean>;
   public filterSubject = new Subject<string>();
-  public defaultSort: Sort = { active: 'id', direction: 'asc' };
+  public defaultSort: Sort = { active: 'name', direction: 'asc' };
 
   private filter: string = "";
   private subscription: Subscription = new Subscription();
