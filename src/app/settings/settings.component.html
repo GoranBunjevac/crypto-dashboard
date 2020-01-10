@@ -1,6 +1,12 @@
-<h6 style="padding-top:80px; padding-left:40px">Please, select one of the following fiat currencies:</h6>
+<h6 style="padding-top:80px; padding-left:40px">
+  Please, select one of the following fiat currencies:
+</h6>
 <div style="padding-left: 40px;">
   <ng-container *ngFor="let currency of fiatCurrencies; let i = index">
-    <mat-checkbox [checked]="currencyCheckedIndex === i" (change)="currencyCheckboxChange($event, i)">{{currency}}</mat-checkbox>
-</ng-container>
+    <mat-checkbox
+      [checked]="currencyCheckedIndex === i"
+      (change)="currencyCheckboxChange($event, i)"
+      >{{ currency }}</mat-checkbox
+    >
+  </ng-container>
 </div>

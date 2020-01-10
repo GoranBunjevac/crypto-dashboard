@@ -1,7 +1,10 @@
-import { initialCoinState, CoinState, coinAdapter } from './coin.state';
-import { CoinAction, CoinActionType } from './coin.actions';
+import { initialCoinState, CoinState, coinAdapter } from "./coin.state";
+import { CoinAction, CoinActionType } from "./coin.actions";
 
-export function coinReducer(state = initialCoinState, action: CoinAction): CoinState {
+export function coinReducer(
+  state = initialCoinState,
+  action: CoinAction
+): CoinState {
   switch (action.type) {
     case CoinActionType.LOAD_REQUEST: {
       return { ...state, loading: true };
@@ -11,7 +14,6 @@ export function coinReducer(state = initialCoinState, action: CoinAction): CoinS
         ...state,
         error: false,
         loading: false,
-        //TODO: remove total
         total: 100,
         fiatCurrency: action.fiatCurrency
       });
@@ -25,28 +27,8 @@ export function coinReducer(state = initialCoinState, action: CoinAction): CoinS
       });
     }
     case CoinActionType.CHANGE_CURRENCY_REQUEST: {
-      return {...state, fiatCurrency: action.payload };
+      return { ...state, fiatCurrency: action.payload };
     }
-    case CoinActionType.SEARCH_REQUEST: {
-      return {
-          ...state,
-          loading: true,
-          searchText: action.payload
-      };
-  }
-  case CoinActionType.SEARCH_SUCCESS: {
-      return {
-          ...state,
-          loading: false
-      };
-  }
-  case CoinActionType.SEARCH_FAILURE: {
-      return {
-          ...state,
-          loading: false,
-          error: true
-      };
-  }
     default:
       return state;
   }

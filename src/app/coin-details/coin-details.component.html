@@ -1,59 +1,64 @@
 <h2 style="padding-top: 80px; padding-left: 40px">Coin details</h2>
-<hr class="detailsLine" style="margin-left: 3%">
 <div *ngIf="(coin$ | async) != null" style="padding-left: 40px">
-  <h3>{{(coin$ | async).name}}</h3>
-    <hr class="detailsLine">
+  <h3>{{ (coin$ | async).name }}</h3>
   <table>
     <tr>
       <td width="20%"><strong>Name</strong></td>
-      <td width="50%">{{(coin$ | async).name}}</td>
+      <td width="50%">{{ (coin$ | async).name }}</td>
     </tr>
     <tr>
       <td><strong>Symbol</strong></td>
-      <td>{{(coin$ | async).symbol}}</td>
+      <td>{{ (coin$ | async).symbol }}</td>
     </tr>
     <tr>
       <td><strong>Rank</strong></td>
-      <td>{{(coin$ | async).cmcRank}}</td>
+      <td>{{ (coin$ | async).cmcRank }}</td>
     </tr>
     <tr>
-      <td><strong>Price in selected fiat currency</strong></td>
-      <td>{{(coin$ | async).quote.fiatCurrency.price}}</td>
+      <td>
+        <strong>Price in {{ fiatCurrency }} currency</strong>
+      </td>
+      <td>{{ (coin$ | async).quote.fiatCurrency.price }}</td>
     </tr>
     <tr>
       <td><strong>24 hour volume USD</strong></td>
-      <td>{{(coin$ | async).quote.fiatCurrency.volume24H}}</td>
+      <td>{{ (coin$ | async).quote.fiatCurrency.volume24H }}</td>
     </tr>
     <tr>
-      <td><strong>Market cap USD</strong></td>
-      <td>{{(coin$ | async).quote.fiatCurrency.marketCap}}</td>
+      <td>
+        <strong>Market cap {{ fiatCurrency }}</strong>
+      </td>
+      <td>{{ (coin$ | async).quote.fiatCurrency.marketCap }}</td>
     </tr>
     <tr>
       <td><strong>Available supply</strong></td>
-      <td>{{(coin$ | async).circulatingSupply}}</td>
+      <td>{{ (coin$ | async).circulatingSupply }}</td>
     </tr>
     <tr>
       <td><strong>Total supply</strong></td>
-      <td>{{(coin$ | async).totalSupply}}</td>
+      <td>{{ (coin$ | async).totalSupply }}</td>
     </tr>
     <tr>
       <td><strong>Max supply</strong></td>
-      <td>{{(coin$ | async).maxSupply}}</td>
+      <td>{{ (coin$ | async).maxSupply }}</td>
     </tr>
     <tr>
       <td><strong>Percentage change per hour</strong></td>
-      <td>{{(coin$ | async).quote.fiatCurrency.percentChange1H}}</td>
+      <td>{{ (coin$ | async).quote.fiatCurrency.percentChange1H }}</td>
     </tr>
     <tr>
       <td><strong>Percentage change per day</strong></td>
-      <td>{{(coin$ | async).quote.fiatCurrency.percentChange24H}}</td>
+      <td>{{ (coin$ | async).quote.fiatCurrency.percentChange24H }}</td>
     </tr>
     <tr>
       <td><strong>Percentage change per week</strong></td>
-      <td>{{(coin$ | async).quote.fiatCurrency.percentChange7D}}</td>
+      <td>{{ (coin$ | async).quote.fiatCurrency.percentChange7D }}</td>
     </tr>
   </table>
+
   <div class="float-left refresh-button">
-      <button mat-raised-button [color]="'refresh'" (click)="refresh()">Refresh</button>
+    <button mat-raised-button [color]="'refresh'" (click)="refresh()">
+      Refresh
+    </button>
   </div>
 </div>

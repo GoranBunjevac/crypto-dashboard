@@ -1,7 +1,7 @@
-import { createSelector, createFeatureSelector } from '@ngrx/store';
-import { CoinState, coinAdapter } from './coin.state';
-import * as fromRouterState from '../router-store/router.selectors';
-import { Coin } from 'src/app/models/coin';
+import { createSelector, createFeatureSelector } from "@ngrx/store";
+import { CoinState, coinAdapter } from "./coin.state";
+import * as fromRouterState from "../router-store/router.selectors";
+import { Coin } from "src/app/models/coin";
 
 export const {
   selectIds: _selectCoinDataIds,
@@ -10,7 +10,7 @@ export const {
   selectTotal: _selectCoinTotal
 } = coinAdapter.getSelectors();
 
-export const selectCoinState = createFeatureSelector<CoinState>('coin');
+export const selectCoinState = createFeatureSelector<CoinState>("coin");
 
 export const selectCoinIds = createSelector(
   selectCoinState,
@@ -22,10 +22,7 @@ export const selectCoinEntities = createSelector(
   _selectCoinEntities
 );
 
-export const selectAllCoin = createSelector(
-  selectCoinState,
-  _selectAllCoin
-);
+export const selectAllCoin = createSelector(selectCoinState, _selectAllCoin);
 
 export const selectCoinError = createSelector(
   selectCoinState,
@@ -47,30 +44,16 @@ export const selectFiatCurrency = createSelector(
   (state: CoinState): string => state.fiatCurrency
 );
 
-export const selectSearchText = createSelector(
-  selectCoinState,
-  (state: CoinState): string => state.searchText
-);
-
-export const getSelectedCoin  = createSelector(
+export const getSelectedCoin = createSelector(
   selectCoinState,
   fromRouterState.getRouterStoreState,
   (coins, routerState): Coin => {
-    if (routerState && routerState.state.params.id && coins.entities[routerState.state.params.id]) {
+    if (
+      routerState &&
+      routerState.state.params.id &&
+      coins.entities[routerState.state.params.id]
+    ) {
       return coins.entities[routerState.state.params.id];
-    }
-  }
-);
-
-export const getFilteredCoins = createSelector(
-  selectCoinState,
-  selectSearchText,
-  (coins, filter): Coin => {
-    if(coins.entities) {
-      var values = Object.keys(coins.entities).map(key => {
-        return coins.entities[key];
-    });
-      return values.find(coin => coin.name === filter);
     }
   }
 );

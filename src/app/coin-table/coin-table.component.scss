@@ -1,6 +1,7 @@
 @import "../../assets/scss/global-variables.scss";
 
 .coin-content {
+  padding-top: 56px;
   .table-header {
     margin-top: 16px;
     display: flex;
@@ -29,7 +30,7 @@
     margin-top: 8px;
 
     table {
-      font-family: 'Open sans';
+      font-family: "Open sans";
       color: $deep-blue-color;
       line-height: 17px !important;
       width: 100%;
@@ -54,15 +55,15 @@
         .no-data-cell {
           text-align: center;
         }
-          .no-data-cell > span {
-            display: block;
-            margin-top: 4px;
-          }
-          .no-data-cell > span.retry {
-            display: block;
-            color: $pine-green-color;
-            cursor: pointer;
-          }
+        .no-data-cell > span {
+          display: block;
+          margin-top: 4px;
+        }
+        .no-data-cell > span.retry {
+          display: block;
+          color: $pine-green-color;
+          cursor: pointer;
+        }
       }
 
       th.mat-header-cell {
@@ -88,5 +89,5 @@
 }
 
 .refresh-button {
-  padding: 10px;
+  padding: 20px;
 }

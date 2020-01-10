@@ -1,11 +1,14 @@
-import { HttpClient } from '@angular/common/http';
-import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
-import { CoinService } from './coin.service';
-import { TestBed } from '@angular/core/testing';
-import { Coin } from '../models/coin';
-import { getCoins } from '../mocks/mocks';
+import { HttpClient } from "@angular/common/http";
+import {
+  HttpTestingController,
+  HttpClientTestingModule
+} from "@angular/common/http/testing";
+import { CoinService } from "./coin.service";
+import { TestBed } from "@angular/core/testing";
+import { Coin } from "../models/coin";
+import { getCoins } from "../mocks/mocks";
 
-describe('CoinService', () => {
+describe("CoinService", () => {
   let httpClient: HttpClient;
   let httpTestingController: HttpTestingController;
   let coinService: CoinService;
@@ -29,12 +32,12 @@ describe('CoinService', () => {
     httpTestingController.verify();
   });
 
-  it('should be created', () => {
+  it("should be created", () => {
     const service: CoinService = TestBed.get(CoinService);
     expect(service).toBeTruthy();
   });
 
-  describe('#getCoins', () => {
+  describe("#getCoins", () => {
     let expectedCoins: Array<Coin>;
 
     beforeEach(() => {
@@ -43,20 +46,23 @@ describe('CoinService', () => {
       expectedCoins = getCoins();
     });
 
-    it('should return expected coins (called once)', () => {
-
-      coinService.getCoinData('USD').subscribe(
-        c => {
-          expect(c).toEqual(expectedCoins, 'should return coins with USD currencies');
-        },
-        fail
-      );
+    it("should return expected coins (called once)", () => {
+      coinService.getCoinData("USD").subscribe(c => {
+        expect(c).toEqual(
+          expectedCoins,
+          "should return coins with USD currencies"
+        );
+      }, fail);
 
       // CoinService should have made one request to GET coins
       // Currently it is impossible to test http requests in a service which contain query parameters
       // Workaround is to use the request matcher function
-      const req = httpTestingController.expectOne(req => req.method === 'GET' && req.url === 'https://localhost:44319/coins/USD');
-      expect(req.request.method).toEqual('GET');
+      const req = httpTestingController.expectOne(
+        req =>
+          req.method === "GET" &&
+          req.url === "https://localhost:44319/coins/USD"
+      );
+      expect(req.request.method).toEqual("GET");
 
       // Respond with the mock coins
       req.flush(expectedCoins);

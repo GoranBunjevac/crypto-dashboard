@@ -1,14 +1,11 @@
-import { Action } from '@ngrx/store';
-import { Coin } from 'src/app/models/coin';
+import { Action } from "@ngrx/store";
+import { Coin } from "src/app/models/coin";
 
 export enum CoinActionType {
-  LOAD_REQUEST = '[Coin] Loading',
-  LOAD_SUCCESS = '[Coin] Load Success',
-  LOAD_FAILURE = '[Coin] Load Failure',
-  CHANGE_CURRENCY_REQUEST = '[Coin] Change currency request',
-  SEARCH_REQUEST = '[Coin] Search Request',
-  SEARCH_SUCCESS = '[Coin] Search Success',
-  SEARCH_FAILURE = '[Coin] Search Failure',
+  LOAD_REQUEST = "[Coin] Loading",
+  LOAD_SUCCESS = "[Coin] Load Success",
+  LOAD_FAILURE = "[Coin] Load Failure",
+  CHANGE_CURRENCY_REQUEST = "[Coin] Change currency request"
 }
 
 export class CoinLoadAction implements Action {
@@ -31,27 +28,8 @@ export class ChangeCurrencyRequestAction implements Action {
   constructor(public payload: string) {}
 }
 
-export class SearchRequestAction implements Action {
-  readonly type = CoinActionType.SEARCH_REQUEST;
-  constructor(public payload: string) { }
-}
-
-export class SearchSuccessAction implements Action {
-  readonly type = CoinActionType.SEARCH_SUCCESS;
-  constructor(public payload: string[]) { }
-}
-
-export class SearchFailureAction implements Action {
-  readonly type = CoinActionType.SEARCH_FAILURE;
-  constructor(public payload: { error: string }) { }
-}
-
-
 export type CoinAction =
-CoinLoadAction |
-CoinLoadSuccessAction |
-CoinLoadFailAction |
-ChangeCurrencyRequestAction |
-SearchRequestAction |
-SearchSuccessAction |
-SearchFailureAction;
+  | CoinLoadAction
+  | CoinLoadSuccessAction
+  | CoinLoadFailAction
+  | ChangeCurrencyRequestAction;
