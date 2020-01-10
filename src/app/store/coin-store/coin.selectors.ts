@@ -37,10 +37,14 @@ export const selectCoinLoading = createSelector(
   (state: CoinState): boolean => state.loading
 );
 
-
 export const selectCoinTotal = createSelector(
   selectCoinState,
   (state: CoinState): number => state.total
+);
+
+export const selectFiatCurrency = createSelector(
+  selectCoinState,
+  (state: CoinState): string => state.fiatCurrency
 );
 
 export const getSelectedCoin  = createSelector(

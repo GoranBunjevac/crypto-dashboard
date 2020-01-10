@@ -11,7 +11,9 @@ export function coinReducer(state = initialCoinState, action: CoinAction): CoinS
         ...state,
         error: false,
         loading: false,
-        total: 100
+        //TODO: remove total
+        total: 100,
+        fiatCurrency: action.fiatCurrency
       });
     }
     case CoinActionType.LOAD_FAILURE: {
@@ -21,6 +23,9 @@ export function coinReducer(state = initialCoinState, action: CoinAction): CoinS
         loading: false,
         total: 0
       });
+    }
+    case CoinActionType.CHANGE_CURRENCY_REQUEST: {
+      return {...state, fiatCurrency: action.payload };
     }
     default:
       return state;

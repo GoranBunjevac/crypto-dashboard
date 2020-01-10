@@ -19,5 +19,5 @@ export const initialCoinState: CoinState = coinAdapter.getInitialState({
   error: false,
   loading: true,
   total: 0,
-  fiatCurrency: null
+  fiatCurrency: 'USD'
 });
