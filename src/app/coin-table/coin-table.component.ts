@@ -3,7 +3,7 @@ import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { GlobalState } from '../store/global.state';
 import { Store, select } from '@ngrx/store';
-import { selectAllCoin, selectCoinTotal, selectCoinError, selectCoinLoading } from '../store/coin-store/coin.selectors';
+import { selectAllCoin, selectCoinTotal, selectCoinError, selectCoinLoading, selectFiatCurrency } from '../store/coin-store/coin.selectors';
 import { CoinLoadAction } from '../store/coin-store/coin.actions';
 import { MatPaginator } from '@angular/material/paginator';
 import { Observable, merge, Subject, Subscription } from 'rxjs';
@@ -25,6 +25,7 @@ export class CoinTableComponent implements OnInit, OnDestroy, AfterViewInit {
   public displayedColumns: string[] = ['name', 'rank', 'symbol', 'price', '24hourChange'];
   public dataSource: MatTableDataSource<Coin>;
   public coinTotal: number;
+  public fiatCurrency: string;
   public noData: Coin[] = [];
   public loading: boolean;
   public error$: Observable<boolean>;
@@ -34,19 +35,20 @@ export class CoinTableComponent implements OnInit, OnDestroy, AfterViewInit {
   private filter: string = "";
   private subscription: Subscription = new Subscription();
 
-  constructor(public store: Store<GlobalState>,
+  constructor(public store$: Store<GlobalState>,
               private router: Router) { }
 
   public ngOnInit(): void {
-    this.store.pipe(select(selectAllCoin)).subscribe(coins => this.initializeData(coins));
-    this.store.pipe(select(selectCoinTotal)).subscribe(total => this.coinTotal = total);
-    this.subscription.add(this.store.pipe(select(selectCoinLoading)).subscribe(loading => {
+    this.store$.pipe(select(selectAllCoin)).subscribe(coins => this.initializeData(coins));
+    this.store$.pipe(select(selectCoinTotal)).subscribe(total => this.coinTotal = total);
+    this.store$.pipe(select(selectFiatCurrency)).subscribe(currency => this.fiatCurrency = currency);
+    this.subscription.add(this.store$.pipe(select(selectCoinLoading)).subscribe(loading => {
       if (loading) {
         this.dataSource = new MatTableDataSource(this.noData);
       }
       this.loading = loading;
     }));
-    this.error$ = this.store.pipe(select(selectCoinError));
+    this.error$ = this.store$.pipe(select(selectCoinError));
   }
 
   public ngAfterViewInit(): void {
@@ -70,7 +72,7 @@ export class CoinTableComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   private loadCoins(): void {
-    this.store.dispatch(new CoinLoadAction());
+    this.store$.dispatch(new CoinLoadAction(this.fiatCurrency));
   }
 
   private initializeData(coins: Coin[]): void {
@@ -78,6 +80,10 @@ export class CoinTableComponent implements OnInit, OnDestroy, AfterViewInit {
     if (coins.length) {
       this.dataSource.paginator = this.paginator;
     }
+  }
+
+  public refresh(): void {
+    this.store$.dispatch(new CoinLoadAction(this.fiatCurrency));
   }
 
   public ngOnDestroy(): void {
