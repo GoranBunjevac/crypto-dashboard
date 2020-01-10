@@ -27,6 +27,26 @@ export function coinReducer(state = initialCoinState, action: CoinAction): CoinS
     case CoinActionType.CHANGE_CURRENCY_REQUEST: {
       return {...state, fiatCurrency: action.payload };
     }
+    case CoinActionType.SEARCH_REQUEST: {
+      return {
+          ...state,
+          loading: true,
+          searchText: action.payload
+      };
+  }
+  case CoinActionType.SEARCH_SUCCESS: {
+      return {
+          ...state,
+          loading: false
+      };
+  }
+  case CoinActionType.SEARCH_FAILURE: {
+      return {
+          ...state,
+          loading: false,
+          error: true
+      };
+  }
     default:
       return state;
   }

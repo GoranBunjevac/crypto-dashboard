@@ -7,6 +7,7 @@ export interface CoinState extends EntityState<Coin> {
   // TODO: remove total?
   total: number;
   fiatCurrency: string;
+  searchText: string;
 }
 
 export const coinAdapter: EntityAdapter<Coin> = createEntityAdapter<Coin>({
@@ -19,5 +20,6 @@ export const initialCoinState: CoinState = coinAdapter.getInitialState({
   error: false,
   loading: true,
   total: 0,
-  fiatCurrency: 'USD'
+  fiatCurrency: 'USD',
+  searchText: ''
 });

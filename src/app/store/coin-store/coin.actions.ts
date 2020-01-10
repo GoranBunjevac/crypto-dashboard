@@ -6,7 +6,9 @@ export enum CoinActionType {
   LOAD_SUCCESS = '[Coin] Load Success',
   LOAD_FAILURE = '[Coin] Load Failure',
   CHANGE_CURRENCY_REQUEST = '[Coin] Change currency request',
-  CHANGE_CURRENCY_SUCCESS = '[Coin] Change currency success'
+  SEARCH_REQUEST = '[Coin] Search Request',
+  SEARCH_SUCCESS = '[Coin] Search Success',
+  SEARCH_FAILURE = '[Coin] Search Failure',
 }
 
 export class CoinLoadAction implements Action {
@@ -29,8 +31,27 @@ export class ChangeCurrencyRequestAction implements Action {
   constructor(public payload: string) {}
 }
 
-export class ChangeCurrencySuccessAction implements Action {
-  public readonly type = CoinActionType.CHANGE_CURRENCY_SUCCESS;
+export class SearchRequestAction implements Action {
+  readonly type = CoinActionType.SEARCH_REQUEST;
+  constructor(public payload: string) { }
 }
 
-export type CoinAction = CoinLoadAction | CoinLoadSuccessAction | CoinLoadFailAction | ChangeCurrencyRequestAction | ChangeCurrencySuccessAction;
+export class SearchSuccessAction implements Action {
+  readonly type = CoinActionType.SEARCH_SUCCESS;
+  constructor(public payload: string[]) { }
+}
+
+export class SearchFailureAction implements Action {
+  readonly type = CoinActionType.SEARCH_FAILURE;
+  constructor(public payload: { error: string }) { }
+}
+
+
+export type CoinAction =
+CoinLoadAction |
+CoinLoadSuccessAction |
+CoinLoadFailAction |
+ChangeCurrencyRequestAction |
+SearchRequestAction |
+SearchSuccessAction |
+SearchFailureAction;

@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { switchMap, map, catchError } from 'rxjs/operators';
-import { CoinActionType, CoinLoadAction, CoinLoadSuccessAction, CoinLoadFailAction } from './coin.actions';
+import { CoinActionType, CoinLoadAction, CoinLoadSuccessAction, CoinLoadFailAction, SearchRequestAction } from './coin.actions';
 import { CoinService } from '../../services/coin.service';
 import { Coin } from 'src/app/models/coin';
 import { Store } from '@ngrx/store';
@@ -31,9 +31,9 @@ export class CoinEffects {
 
   // @Effect()
   // public loadFilteredCoins$ = this.actions$
-  //   .pipe(ofType<CoinFilteredLoadAction>(CoinActionType.Loading),
+  //   .pipe(ofType<SearchRequestAction>(CoinActionType.SEARCH_REQUEST),
   //     map(action => action.payload),
-  //     switchMap((params: CoinParams) =>
+  //     switchMap((filter: string) =>
   //       this.service.getCoins(params).pipe(
   //         map((response: CoinResponse) => new CoinLoadSuccessAction(response)),
   //         catchError((error) => of(new CoinLoadFailAction(error)))

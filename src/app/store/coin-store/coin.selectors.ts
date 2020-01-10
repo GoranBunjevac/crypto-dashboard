@@ -47,12 +47,30 @@ export const selectFiatCurrency = createSelector(
   (state: CoinState): string => state.fiatCurrency
 );
 
+export const selectSearchText = createSelector(
+  selectCoinState,
+  (state: CoinState): string => state.searchText
+);
+
 export const getSelectedCoin  = createSelector(
   selectCoinState,
   fromRouterState.getRouterStoreState,
   (coins, routerState): Coin => {
     if (routerState && routerState.state.params.id && coins.entities[routerState.state.params.id]) {
       return coins.entities[routerState.state.params.id];
+    }
+  }
+);
+
+export const getFilteredCoins = createSelector(
+  selectCoinState,
+  selectSearchText,
+  (coins, filter): Coin => {
+    if(coins.entities) {
+      var values = Object.keys(coins.entities).map(key => {
+        return coins.entities[key];
+    });
+      return values.find(coin => coin.name === filter);
     }
   }
 );
