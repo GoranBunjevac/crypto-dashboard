@@ -14,6 +14,7 @@ import { CoinDetailsComponent } from './coin-details/coin-details.component';
 import { GlobalStoreModule } from './store/global-store.module';
 import { SettingsComponent } from './settings/settings.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MaterialModule,
     GlobalStoreModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxSpinnerModule
   ],
   providers: [CoinService],
   bootstrap: [AppComponent]

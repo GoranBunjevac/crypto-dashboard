@@ -4,12 +4,14 @@ import { MatTableDataSource } from '@angular/material/table';
 import { GlobalState } from '../store/global.state';
 import { Store, select } from '@ngrx/store';
 import { selectAllCoin, selectCoinTotal, selectCoinError, selectCoinLoading, selectFiatCurrency } from '../store/coin-store/coin.selectors';
-import { CoinLoadAction } from '../store/coin-store/coin.actions';
+import { CoinLoadAction, SearchRequestAction } from '../store/coin-store/coin.actions';
 import { MatPaginator } from '@angular/material/paginator';
 import { Observable, merge, Subject, Subscription } from 'rxjs';
 import { tap, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { Coin } from '../models/coin';
 import { Router } from '@angular/router';
+import { FormGroup, FormControl } from '@angular/forms';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-coin-table',
@@ -35,8 +37,13 @@ export class CoinTableComponent implements OnInit, OnDestroy, AfterViewInit {
   private filter: string = "";
   private subscription: Subscription = new Subscription();
 
+  searchForm = new FormGroup({
+    searchText: new FormControl("")
+  });
+
   constructor(public store$: Store<GlobalState>,
-              private router: Router) { }
+              private router: Router,
+              public spinnerService: NgxSpinnerService) { }
 
   public ngOnInit(): void {
     this.store$.pipe(select(selectAllCoin)).subscribe(coins => this.initializeData(coins));
@@ -44,6 +51,7 @@ export class CoinTableComponent implements OnInit, OnDestroy, AfterViewInit {
     this.store$.pipe(select(selectFiatCurrency)).subscribe(currency => this.fiatCurrency = currency);
     this.subscription.add(this.store$.pipe(select(selectCoinLoading)).subscribe(loading => {
       if (loading) {
+        this.spinnerService.show();
         this.dataSource = new MatTableDataSource(this.noData);
       }
       this.loading = loading;
@@ -73,6 +81,7 @@ export class CoinTableComponent implements OnInit, OnDestroy, AfterViewInit {
 
   private loadCoins(): void {
     this.store$.dispatch(new CoinLoadAction(this.fiatCurrency));
+    this.spinnerService.hide();
   }
 
   private initializeData(coins: Coin[]): void {
@@ -88,6 +97,10 @@ export class CoinTableComponent implements OnInit, OnDestroy, AfterViewInit {
 
   public ngOnDestroy(): void {
     this.subscription.unsubscribe();
+  }
+
+  public onChange(e): void {
+    this.store$.dispatch(new SearchRequestAction(this.searchForm.value));
   }
 
   public retry(): void {

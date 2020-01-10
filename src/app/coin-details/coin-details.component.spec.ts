@@ -1,6 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CoinDetailsComponent } from './coin-details.component';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { StoreModule } from '@ngrx/store';
+import { RouterStoreReduces } from '../store';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('CoinDetailsComponent', () => {
   let component: CoinDetailsComponent;
@@ -8,7 +12,9 @@ describe('CoinDetailsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CoinDetailsComponent ]
+      declarations: [ CoinDetailsComponent ],
+      imports: [ StoreModule.forRoot(RouterStoreReduces.reducers), RouterTestingModule ],
+      schemas: [NO_ERRORS_SCHEMA]
     })
     .compileComponents();
   }));
@@ -21,5 +27,9 @@ describe('CoinDetailsComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  afterEach(() => {
+    TestBed.resetTestingModule();
   });
 });
