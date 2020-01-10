@@ -13,6 +13,7 @@ import { CoinTableComponent } from './coin-table/coin-table.component';
 import { CoinDetailsComponent } from './coin-details/coin-details.component';
 import { GlobalStoreModule } from './store/global-store.module';
 import { SettingsComponent } from './settings/settings.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,9 @@ import { SettingsComponent } from './settings/settings.component';
     HttpClientModule,
     BrowserAnimationsModule,
     MaterialModule,
-    GlobalStoreModule
+    GlobalStoreModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [CoinService],
   bootstrap: [AppComponent]
