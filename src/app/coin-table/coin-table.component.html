@@ -4,21 +4,20 @@
       <ng-container matColumnDef="name">
         <th mat-header-cell class="dc-label" *matHeaderCellDef>Name</th>
         <td mat-cell class="dc-content" *matCellDef="let element">
-          {{ element.name }}
+          {{ element?.name }}
         </td>
       </ng-container>
-
       <ng-container matColumnDef="rank">
         <th mat-header-cell class="dc-label" *matHeaderCellDef>Rank</th>
         <td mat-cell class="dc-content" *matCellDef="let element">
-          {{ element.cmc_rank }}
+          {{ element?.cmc_rank }}
         </td>
       </ng-container>
 
       <ng-container matColumnDef="symbol">
         <th mat-header-cell class="dc-label" *matHeaderCellDef>Symbol</th>
         <td mat-cell class="dc-content" *matCellDef="let element">
-          {{ element.symbol }}
+          {{ element?.symbol }}
         </td>
       </ng-container>
 
@@ -27,7 +26,7 @@
           Price in {{ fiatCurrency }} currency
         </th>
         <td mat-cell class="dc-content" *matCellDef="let element">
-          {{ element.quote.fiatCurrency.price() }}
+          {{ element?.quote?.fiat_currency?.price }}
         </td>
       </ng-container>
 
@@ -36,7 +35,7 @@
           24 hour change
         </th>
         <td mat-cell class="dc-content" *matCellDef="let element">
-          {{ element.quote.fiatCurrency.percentChange24H() }}
+          {{ element?.quote?.fiat_currency?.percent_change_24h }}
         </td>
       </ng-container>
 

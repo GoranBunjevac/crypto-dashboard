@@ -9,11 +9,8 @@ import {
   CoinLoadFailAction
 } from "./coin.actions";
 import { CoinService } from "../../services/coin.service";
-import { Coin } from "src/app/models/coin";
 import { Store } from "@ngrx/store";
 import { CoinState } from "./coin.state";
-import {JsonConvert, OperationMode, ValueCheckingMode} from "json2typescript"
-import { CoinResponse } from 'src/app/models/coin-response';
 
 @Injectable()
 export class CoinEffects {
@@ -30,13 +27,22 @@ export class CoinEffects {
       this.service.getCoinData(action.fiatCurrency).pipe(
         map(
           (response: any) => {
-            let jsonConvert: JsonConvert = new JsonConvert();
-            jsonConvert.operationMode = OperationMode.LOGGING; // print some debug data
-            jsonConvert.ignorePrimitiveChecks = false; // don't allow assigning number to string etc.
-            jsonConvert.valueCheckingMode = ValueCheckingMode.DISALLOW_NULL; // never allow null
-            let result: CoinResponse;
-            result = jsonConvert.deserializeObject(response, CoinResponse);
-            return new CoinLoadSuccessAction(result.data, action.fiatCurrency);
+            response["data"].forEach(element => {
+              if(element["quote"].hasOwnProperty("USD")) {
+                element["quote"].fiat_currency = element["quote"].USD;
+                delete element["quote"].USD;
+              }
+              if(element["quote"].hasOwnProperty("EUR")) {
+                element["quote"].fiat_currency = element["quote"].EUR;
+                delete element["quote"].EUR;
+              }
+              if(element["quote"].hasOwnProperty("CNY")) {
+                element["quote"].fiat_currency = element["quote"].CNY;
+                delete element["quote"].CNY;
+              }
+            });
+
+            return new CoinLoadSuccessAction(response["data"], action.fiatCurrency);
           }
         ),
         catchError(error => of(new CoinLoadFailAction(error)))

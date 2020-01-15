@@ -42,7 +42,6 @@ describe("CoinService", () => {
 
     beforeEach(() => {
       coinService = TestBed.get(CoinService);
-      // TODO: extract to mock
       expectedCoins = getCoins();
     });
 
@@ -60,7 +59,7 @@ describe("CoinService", () => {
       const req = httpTestingController.expectOne(
         req =>
           req.method === "GET" &&
-          req.url === "https://localhost:44319/coins/USD"
+          req.url === "v1/cryptocurrency/listings/latest"
       );
       expect(req.request.method).toEqual("GET");
 
