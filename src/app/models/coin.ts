@@ -6,14 +6,14 @@ export class Coin {
   name: string;
   symbol: string;
   slug: string;
-  numMarketPairs: string;
-  dateAdded: string;
+  num_market_pairs: string;
+  date_added: string;
   tags: string[];
-  maxSupply: string;
-  circulatingSupply: string;
-  totalSupply: string;
-  cmcRank: string;
+  max_supply: string;
+  circulating_supply: string;
+  total_supply: string;
+  cmc_rank: string;
   platform: Platform;
   quote: Quote;
-  lastUpdated: string;
+  last_updated: string;
 }

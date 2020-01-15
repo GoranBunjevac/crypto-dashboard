@@ -12,47 +12,47 @@
     </tr>
     <tr>
       <td><strong>Rank</strong></td>
-      <td>{{ (coin$ | async).cmcRank }}</td>
+      <td>{{ (coin$ | async).cmc_rank }}</td>
     </tr>
     <tr>
       <td>
-        <strong>Price in {{ fiatCurrency }} currency</strong>
+        <strong>Price in {{ USD }} currency</strong>
       </td>
       <td>{{ (coin$ | async).quote.fiatCurrency.price }}</td>
     </tr>
     <tr>
       <td><strong>24 hour volume USD</strong></td>
-      <td>{{ (coin$ | async).quote.fiatCurrency.volume24H }}</td>
+      <td>{{ (coin$ | async).quote.fiatCurrency.volume_24h }}</td>
     </tr>
     <tr>
       <td>
         <strong>Market cap {{ fiatCurrency }}</strong>
       </td>
-      <td>{{ (coin$ | async).quote.fiatCurrency.marketCap }}</td>
+      <td>{{ (coin$ | async).quote.fiatCurrency.market_cap }}</td>
     </tr>
     <tr>
       <td><strong>Available supply</strong></td>
-      <td>{{ (coin$ | async).circulatingSupply }}</td>
+      <td>{{ (coin$ | async).circulating_supply }}</td>
     </tr>
     <tr>
       <td><strong>Total supply</strong></td>
-      <td>{{ (coin$ | async).totalSupply }}</td>
+      <td>{{ (coin$ | async).total_supply }}</td>
     </tr>
     <tr>
       <td><strong>Max supply</strong></td>
-      <td>{{ (coin$ | async).maxSupply }}</td>
+      <td>{{ (coin$ | async).max_supply }}</td>
     </tr>
     <tr>
       <td><strong>Percentage change per hour</strong></td>
-      <td>{{ (coin$ | async).quote.fiatCurrency.percentChange1H }}</td>
+      <td>{{ (coin$ | async).quote.fiatCurrency.percent_change_1h }}</td>
     </tr>
     <tr>
       <td><strong>Percentage change per day</strong></td>
-      <td>{{ (coin$ | async).quote.fiatCurrency.percentChange24H }}</td>
+      <td>{{ (coin$ | async).quote.fiatCurrency.percent_change_24h }}</td>
     </tr>
     <tr>
       <td><strong>Percentage change per week</strong></td>
-      <td>{{ (coin$ | async).quote.fiatCurrency.percentChange7D }}</td>
+      <td>{{ (coin$ | async).quote.fiatCurrency.percent_change_7d }}</td>
     </tr>
   </table>
 

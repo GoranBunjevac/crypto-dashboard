@@ -3,5 +3,5 @@ export class Platform {
   name: string;
   symbol: string;
   slug: string;
-  tokenAddress: string;
+  token_address: string;
 }

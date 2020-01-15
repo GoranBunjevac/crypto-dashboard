@@ -11,7 +11,7 @@
       <ng-container matColumnDef="rank">
         <th mat-header-cell class="dc-label" *matHeaderCellDef>Rank</th>
         <td mat-cell class="dc-content" *matCellDef="let element">
-          {{ element.cmcRank }}
+          {{ element.cmc_rank }}
         </td>
       </ng-container>
 
@@ -36,7 +36,7 @@
           24 hour change
         </th>
         <td mat-cell class="dc-content" *matCellDef="let element">
-          {{ element.quote.fiatCurrency.percentChange24H }}
+          {{ element.quote.fiatCurrency.percent_change_24h }}
         </td>
       </ng-container>
 

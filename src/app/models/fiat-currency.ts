@@ -1,9 +1,9 @@
 export class FiatCurrency {
   price: number;
-  volume24H: number;
-  percentChange1H: number;
-  percentChange24H: number;
-  percentChange7D: number;
-  marketCap: number;
-  lastUpdated: string;
+  volume_24h: number;
+  percent_change_1h: number;
+  percent_change_24h: number;
+  percent_change_7d: number;
+  market_cap: number;
+  last_updated: string;
 }

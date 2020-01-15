@@ -1,5 +1,8 @@
 import { FiatCurrency } from './fiat-currency';
+import { propertyMap } from '../shared/decorators/property-map';
 
 export class Quote {
-  fiatCurrency: FiatCurrency;
+  // @propertyMap('USD')
+  // @propertyMap('EUR')
+  public fiatCurrency: FiatCurrency;
 }
