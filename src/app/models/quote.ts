@@ -1,8 +1,10 @@
 import { FiatCurrency } from './fiat-currency';
-import { propertyMap } from '../shared/decorators/property-map';
+import {JsonObject, JsonProperty} from "json2typescript";
 
+@JsonObject("Quote")
 export class Quote {
-  // @propertyMap('USD')
-  // @propertyMap('EUR')
-  public fiatCurrency: FiatCurrency;
+  @JsonProperty("USD")
+  private _fiatCurrency: FiatCurrency = undefined;
+  get fiatCurrency() {return this._fiatCurrency}
+  set fiatCurrency(value: FiatCurrency) {this._fiatCurrency = value}
 }

@@ -27,7 +27,7 @@
           Price in {{ fiatCurrency }} currency
         </th>
         <td mat-cell class="dc-content" *matCellDef="let element">
-          {{ element.quote.fiatCurrency.price }}
+          {{ element.quote.fiatCurrency.price() }}
         </td>
       </ng-container>
 
@@ -36,7 +36,7 @@
           24 hour change
         </th>
         <td mat-cell class="dc-content" *matCellDef="let element">
-          {{ element.quote.fiatCurrency.percent_change_24h }}
+          {{ element.quote.fiatCurrency.percentChange24H() }}
         </td>
       </ng-container>
 

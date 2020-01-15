@@ -10,7 +10,7 @@ export function coinReducer(
       return { ...state, loading: true };
     }
     case CoinActionType.LOAD_SUCCESS: {
-      return coinAdapter.addAll(action.payload.data, {
+      return coinAdapter.addAll(action.payload, {
         ...state,
         error: false,
         loading: false,

@@ -16,19 +16,19 @@
     </tr>
     <tr>
       <td>
-        <strong>Price in {{ USD }} currency</strong>
+        <strong>Price in {{ fiatCurrency }} currency</strong>
       </td>
-      <td>{{ (coin$ | async).quote.fiatCurrency.price }}</td>
+      <td>{{ (coin$ | async).quote.fiatCurrency.price() }}</td>
     </tr>
     <tr>
       <td><strong>24 hour volume USD</strong></td>
-      <td>{{ (coin$ | async).quote.fiatCurrency.volume_24h }}</td>
+      <td>{{ (coin$ | async).quote.fiatCurrency.volume24H() }}</td>
     </tr>
     <tr>
       <td>
         <strong>Market cap {{ fiatCurrency }}</strong>
       </td>
-      <td>{{ (coin$ | async).quote.fiatCurrency.market_cap }}</td>
+      <td>{{ (coin$ | async).quote.fiatCurrency.marketCap() }}</td>
     </tr>
     <tr>
       <td><strong>Available supply</strong></td>
@@ -44,15 +44,15 @@
     </tr>
     <tr>
       <td><strong>Percentage change per hour</strong></td>
-      <td>{{ (coin$ | async).quote.fiatCurrency.percent_change_1h }}</td>
+      <td>{{ (coin$ | async).quote.fiatCurrency.percentChange1H()}}</td>
     </tr>
     <tr>
       <td><strong>Percentage change per day</strong></td>
-      <td>{{ (coin$ | async).quote.fiatCurrency.percent_change_24h }}</td>
+      <td>{{ (coin$ | async).quote.fiatCurrency.percentChange24H() }}</td>
     </tr>
     <tr>
       <td><strong>Percentage change per week</strong></td>
-      <td>{{ (coin$ | async).quote.fiatCurrency.percent_change_7d }}</td>
+      <td>{{ (coin$ | async).quote.fiatCurrency.percentChange7D }}</td>
     </tr>
   </table>
 

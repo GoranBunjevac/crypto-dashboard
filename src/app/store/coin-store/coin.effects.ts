@@ -36,7 +36,7 @@ export class CoinEffects {
             jsonConvert.valueCheckingMode = ValueCheckingMode.DISALLOW_NULL; // never allow null
             let result: CoinResponse;
             result = jsonConvert.deserializeObject(response, CoinResponse);
-            new CoinLoadSuccessAction(result.data, action.fiatCurrency);
+            return new CoinLoadSuccessAction(result.data, action.fiatCurrency);
           }
         ),
         catchError(error => of(new CoinLoadFailAction(error)))
